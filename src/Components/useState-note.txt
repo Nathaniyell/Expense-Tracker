@@ -1,0 +1,44 @@
+Instead of calling the useState hook multiple times for different input fields, it can be called once, the different properties which will be updated can also be listed as an object and updated where necessary individually while using the spread operator to include the other properties which are not being updated.
+
+const [userInput, setUserInput] = useState({
+    newTitle: '',
+    newAmount: '',
+    newDate: ''
+})
+
+const newTitleHandler = (event) =>{
+    setUserInput((prevState)=> {
+        return {...prevState, newTitle: event.target.value,}
+     })
+}
+const newAmountHandler = (event) =>{
+    setUserInput((prevState)=> {
+        return {...prevState,  newAmount: event.target.value,}       
+    })
+}
+const newDateHandler = (event) =>{
+    setUserInput((prevState)=> {
+        return {...prevState, newDate: event.target.value,}        
+    })
+}
+
+The second method of doing the above is by calling the useState individually for each function and also updating the state individually too.
+
+const [newTitle, setNewTitle] = useState('')
+const [newAmount, setNewAmount] = useState('')
+const [newDate, setNewDate] = useState('')
+
+function newTitleHandler (event){
+    setNewTitle(event.target.value)
+}
+function newAmountHandler (event){
+    setNewAmount(event.target.value)
+}
+function newDateHandler (event){
+    setNewDate(event.target.value)
+}
+
+//Passing Data from child-parent component
+1.  In the parent component, create a callback function which will be used to retrieve data from the child component.
+2.  Pass the callback function to the child as props from the parent component.
+3. Call the function inside the child component and pass the new data as parameter to the called function
